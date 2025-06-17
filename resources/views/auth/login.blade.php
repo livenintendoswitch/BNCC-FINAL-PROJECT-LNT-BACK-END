@@ -33,7 +33,7 @@
                         <button type="submit" class="btn btn-primary w-100">Login</button>
                     </form>
                     <p class="text-center mt-3">
-                        New to the website?<a href="{{ route('register.form') }}">Register</a>
+                        New to the website?<a href="{{ route('register') }}">Register</a>
                     </p>
                 </div>
             </div>

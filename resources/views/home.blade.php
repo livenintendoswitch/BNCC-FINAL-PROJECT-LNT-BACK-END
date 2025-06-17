@@ -22,7 +22,6 @@
         </div>
     </div>
 
-    {{-- Session Messages for actions like adding to cart --}}
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -30,7 +29,6 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
 
-    {{-- Book Listing --}}
     <div class="row g-4">
         @forelse($books as $book)
             <div class="col-lg-3 col-md-4 col-sm-6">

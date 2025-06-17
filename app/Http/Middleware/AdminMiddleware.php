@@ -14,6 +14,6 @@ class AdminMiddleware
         if (Auth::check() && Auth::user()->role === 'admin') {
             return $next($request);
         }
-        return redirect('/')->with('error', 'Akses ditolak. bukan Admin.');
+        return redirect('/')->with('error', 'Access Denied not admin');
     }
 }
