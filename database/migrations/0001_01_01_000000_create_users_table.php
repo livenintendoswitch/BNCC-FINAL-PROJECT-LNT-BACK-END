@@ -12,7 +12,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->enum('role', ['admin', 'user'])->default('user');
-            $table->decimal('money', 15, 2)->default(1000000.00);
+            $table->decimal('money', 15, 2)->default(100000.00);
             $table->rememberToken();
             $table->timestamps();
         });

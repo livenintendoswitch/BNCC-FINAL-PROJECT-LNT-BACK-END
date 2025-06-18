@@ -2,49 +2,33 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class User extends Authenticatable
+class InvoiceDetail extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
-
-    protected $primaryKey = 'user_id';
+    protected $primaryKey = 'invoice_detail_id';
 
 
     protected $fillable = [
-        'username',
-        'password',
-        'role',
-        'money',
-    ];
-
-    protected $hidden = [
-        'password',
-        'remember_token',
+        'invoice_header_id',
+        'book_id',
+        'quantity',
+        'subtotal',
     ];
 
 
-    protected function casts(): array
+    public function invoice(): BelongsTo
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
-
-    public function cartItems(): HasMany
-    {
-        return $this->hasMany(Cart::class, 'user_id', 'user_id');
+        return $this->belongsTo(Invoice::class, 'invoice_header_id', 'invoice_header_id');
     }
 
 
-    public function invoices(): HasMany
+    public function book(): BelongsTo
     {
-        return $this->hasMany(Invoice::class, 'user_id', 'user_id');
+        return $this->belongsTo(Book::class, 'book_id', 'book_id');
     }
 }

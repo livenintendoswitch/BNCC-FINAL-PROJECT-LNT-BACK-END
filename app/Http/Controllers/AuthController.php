@@ -29,7 +29,7 @@ class AuthController extends Controller
             'role' => 'user',
         ]);
 
-        return redirect()->route('login.form')->with('success', 'Registration Success');
+        return redirect()->route('login')->with('success', 'Registration Success');
     }
 
     public function showLoginForm()
@@ -44,17 +44,16 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
 
-            $user = Auth::user();
+                $user = Auth::user();
 
-            if ($user->role === 'admin') {
-                return redirect()->intended(route('admin.dashboard'));
+                if ($user->role === 'admin') {
+                    return redirect()->intended(route('admin.dashboard'));
+                }
+                return redirect()->intended(route('home'));
             }
-
-            return redirect()->intended(route('home'));
-        }
 
         return back()->withErrors([
             'username' => 'wrong password or username',

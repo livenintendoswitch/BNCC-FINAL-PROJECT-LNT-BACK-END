@@ -54,8 +54,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('categories', CategoryController::class)->except(['show']);
 
     // User management
-    Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
-
+    Route::resource('users', AdminUserController::class);
     // management invoice
     Route::get('/invoices', [AdminInvoiceController::class, 'index'])->name('invoices.index');
     Route::get('/invoices/{invoice}', [AdminInvoiceController::class, 'show'])->name('invoices.show');
